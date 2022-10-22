@@ -15,7 +15,7 @@ export async function ultimoSorteio() {
     // Separar as Dezenas do resultado da API
     dezenasSorteadas = result.dezenas
 
-    // Pegar as e tirar o primeiro número
+    // Pegar as dezenas e tirar o primeiro número
     dezenasSorteadas.map((dezena) => {
 
       dezenaBicho.push(dezena.substring(dezena.length - 4));

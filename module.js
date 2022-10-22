@@ -28,7 +28,7 @@ const bichos = [
   ]
   const numerosAvulsos = range(13, 99)
   const numeros = populate(numerosAvulsos)
-  
+
   function range(start, end) {
     return Array(end - start + 1).fill().map((_, idx) => start + idx)
   }
@@ -38,13 +38,13 @@ const bichos = [
     let tabelaBichoMap = new Map()
     let tempBichos = bichos
     let tempNumeros = numeros
-  
+
     for(let i = 0; i < tempBichos.length; i++){
       tabelaBichoMap.set(tempBichos[i], tempNumeros[i])
     }
     return tabelaBichoMap;
   }
-  
+
   // Verifica qual bicho equivale ao numero
   export function verBichoSorteado(map, searchValue){
     for (let [key, value] of map.entries()) {
@@ -52,7 +52,7 @@ const bichos = [
         return key;
     }
   }
-  
+
   // Popula o array de Numeros em grupos
   function populate(avulsos){
     let numeros = [
@@ -62,7 +62,7 @@ const bichos = [
     ]
     let tempArr = []
     let tempAvulsos = avulsos
-  
+
     for(let i = 0; tempAvulsos.length > 0; i++){
       for(let j = 0; j < 4; j++){
         tempArr.push(tempAvulsos.shift())
