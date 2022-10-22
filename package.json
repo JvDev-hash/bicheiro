@@ -5,6 +5,5 @@
     "node-fetch": "^3.2.9",
     "nodemon": "^2.0.19",
     "uuid": "^8.3.2"
-  },
-  "type": "module"
+  }
 }

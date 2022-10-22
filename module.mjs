@@ -33,7 +33,7 @@ const bichos = [
 
   const tabelaMontadaMap = syncTabela();
 
-
+// Abaixo algumas functions auxiliares
   function range(start, end) {
     return Array(end - start + 1).fill().map((_, idx) => start + idx)
   }
@@ -74,7 +74,7 @@ const bichos = [
 
     for(const val of sorteados.values()){
       if(tempValues.includes(val)){
-        tempMap.set(getByValue(tabelaMontadaMap, val), val)
+        tempMap.set(getByValue(tabelaMontadaMap, val).toString(), val)
       }
     }
     return tempMap;
