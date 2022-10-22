@@ -30,22 +30,21 @@ client.once(Events.ClientReady, c => {
 	console.log(`Ready! Logged in as ${c.user.tag}`);
 });
 
-let sorteioMap = await ultimoSorteio();
+client.on('interactionCreate', async interaction => {
+  if (!interaction.isChatInputCommand()) return;
 
-const embed = new EmbedBuilder()
-	.setTitle('Último sorteio do bicho:')
-	.setColor(0x00FFFF)
+  if (interaction.commandName === 'sorteio'){
+    let sorteioMap = await ultimoSorteio();
 
-  for(const val of sorteioMap){
-  embed.addFields({'name': val[0], 'value': val[1], inline: true})
-  }
+    const embed = new EmbedBuilder()
+	    .setTitle('Último sorteio do bicho:')
+	    .setColor(0x00FFFF)
 
-  client.on('interactionCreate', async interaction => {
-    if (!interaction.isChatInputCommand()) return;
-
-    if (interaction.commandName === 'sorteio'){
-      await interaction.reply({ embeds: [ embed ] });
+    for(const val of sorteioMap){
+      embed.addFields({'name': val[0], 'value': val[1], inline: true})
     }
+    await interaction.reply({ embeds: [ embed ] });
+  }
   });
 
 // Log in to Discord with your client's token
