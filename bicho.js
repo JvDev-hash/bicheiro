@@ -1,9 +1,10 @@
-import { montarTabela, verBichoSorteado } from './module.js'
+import { montarTabela, verBichoSorteado, associaTabelaSorteios } from './module.js'
 import fetch from 'node-fetch';
 
 const URL_TO_FETCH = 'https://loteriascaixa-api.herokuapp.com/api/loteria-federal/latest';
 let tabelaBichos = montarTabela()
 let sorteados = new Map()
+let newSorteados = new Map()
 let dezenaBicho = [];
 let dezenasSorteadas;
 
@@ -29,5 +30,8 @@ export async function ultimoSorteio() {
       console.log( numeroBicho + ": " + verBichoSorteado(tabelaBichos, numeroBicho))
       sorteados.set(numeroBicho, verBichoSorteado(tabelaBichos, numeroBicho))
     })
+
+    newSorteados = associaTabelaSorteios(sorteados);
+    console.log(newSorteados)
     return sorteados
 }

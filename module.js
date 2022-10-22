@@ -29,11 +29,58 @@ const bichos = [
   const numerosAvulsos = range(13, 99)
   const numeros = populate(numerosAvulsos)
 
+  const numerosTabela = range(1,25)
+
+  const tabelaMontadaMap = syncTabela();
+
+
   function range(start, end) {
     return Array(end - start + 1).fill().map((_, idx) => start + idx)
   }
 
-  // Monta a tabelas de bichos e numeros para conferir os numeros
+  function iterableToArray(iterable){
+    let array = [];
+
+    for(const val of iterable){
+      array.push(val);
+    }
+
+    return array;
+  }
+
+  function getByValue(map, searchValue) {
+    for (let [key, value] of map.entries()) {
+      if (value === searchValue)
+        return key;
+    }
+  }
+
+// Associa os bichos aos valores da tabela de bichos
+  function syncTabela(){
+    let tabelaBichoMap = new Map();
+    let tempBichos = bichos
+    let tempNumeros = numerosTabela
+
+    for(let i = 0; i < numerosTabela.length; i++){
+      tabelaBichoMap.set(tempNumeros[i], tempBichos[i])
+    }
+
+    return tabelaBichoMap;
+  }
+
+  export function associaTabelaSorteios(sorteados){
+    let tempMap = new Map();
+    let tempValues = iterableToArray(tabelaMontadaMap.values());
+
+    for(const val of sorteados.values()){
+      if(tempValues.includes(val)){
+        tempMap.set(getByValue(tabelaMontadaMap, val), val)
+      }
+    }
+    return tempMap;
+  }
+
+  // Monta a tabelas de bichos e numeros para conferir os numeros da federal
   export function montarTabela(){
     let tabelaBichoMap = new Map()
     let tempBichos = bichos
